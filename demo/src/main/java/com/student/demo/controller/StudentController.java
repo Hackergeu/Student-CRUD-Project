@@ -77,4 +77,15 @@ public class StudentController {
         return ResponseEntity.ok("All Records Deleted Successfully");
     }
 
+    @DeleteMapping("/soft-delete/{id}")
+    public ResponseEntity<Object> softDelete(@PathVariable Long id)
+    {
+         boolean ans = studentService.delete(id);
+         if(!ans)
+         {
+             return ResponseEntity.notFound().build();
+         }
+         return ResponseEntity.ok("Record deleted successfully");
+    }
+
 }
